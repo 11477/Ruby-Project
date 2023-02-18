@@ -1,0 +1,19 @@
+<div id="<%= dom_id user %>">
+  <p>
+    <b style="font-size: 30px"><%= user.username %>的项目:</b>
+    <% user.programs.each do |program| %>
+    <div class="programs">
+      <%= link_to program.title, program %>,创建于
+      <%= time_ago_in_words program.created_at %> 之前. |
+        <%= link_to '编辑', edit_program_path(program) %>
+        <%= link_to '详情', program %>
+      <pre class="program-info"><%= program.info %></pre>
+    </div>
+  <% end %>
+  </p>
+  <div style="margin-top: 10px">
+  <%if user==current_user%>
+    <%= link_to '新建项目', new_program_path %>
+  <%end%>
+  </div>
+</div>

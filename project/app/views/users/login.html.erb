@@ -1,0 +1,16 @@
+<h1>登录</h1>
+<h2 style="color: red"><%= alert %></h2>
+<h2 style="color: green"><%= notice %></h2>
+<%= form_with url: do_login_users_path do %>
+  <div class="register-put">
+    <span style="display: block" >学工号</span>
+    <%= text_field_tag :num %>
+  </div>
+  <div class="register-put">
+    <span style="display: block" >密码</span>
+    <%= password_field_tag :password %>
+  </div>
+  <%= submit_tag '确定' %>
+  <br></br>
+  <%= link_to '没有账号？', register_users_path %>
+<% end %>

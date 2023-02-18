@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+<h1>搜索结果</h1>
+<%= form_tag('/search', :method => "get") do %>
+  <input type="text" name="keyword">
+  <input type="submit" value="搜索">
+<% end %>
+<div>
+  总共找到<%= @programs.count %>条结果。
+  <% @programs.each do |program| %>
+    <div style="background: #EFEFEF;border-radius: 5px">
+    <%= render program %>
+    <div style="margin-left: 10px;padding-bottom: 10px">
+      <p>
+        <%= link_to "项目详情", program %>
+      </p>
+    </div>
+    </div>
+  <% end %>
+</div>
+
+

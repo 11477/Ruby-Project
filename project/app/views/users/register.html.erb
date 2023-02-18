@@ -1,0 +1,32 @@
+<h1>注册</h1>
+<h2 style="color: red"><%= alert %></h2>
+<h2 style="color: green"><%= notice %></h2>
+<%= form_with url: do_register_users_path do %>
+  <div class="register-put">
+    <span style="display: block" >您的学工号</span>
+    <%= text_field_tag :num %>
+  </div>
+  <div class="register-put">
+    <span style="display: block" >您的名称</span>
+    <%= text_field_tag :username %>
+  </div>
+  <div class="register-put">
+    <span style="display: block" >您的密码</span>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="register-put">
+    <span style="display: block" >确认密码</span>
+    <%= password_field_tag :password_confirmation %>
+  </div>
+
+  <label for="theme">您的身份:</label>
+  <br><%= radio_button_tag :Ident, 'student', true%> 学生
+  <br><%= radio_button_tag :Ident, 'teacher' %> 老师
+
+
+  <div style="margin-top: 10px;">
+    <%= submit_tag "确认注册"%>
+  </div>
+  <br></br>
+  <%= link_to '直接登录', login_users_path %>
+<% end %>

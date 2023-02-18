@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+<h1>
+  <%=@program.title %>
+</h1>
+<div style="background: #EFEFEF">
+  <%=@program.info %>
+</div>
+<div>
+项目发起人:<%=User.find_by(id: @program.user_id).username %>
+</div>
+<%if current_user.Ident=="student" %>
+  <%if current_user.relations.find_by(program: @program) %>
+    <%= form_for [@program, Relation.new] do |f| %>
+      <p><%= f.submit "取消关注" %></p>
+    <% end %>
+  <%else %>
+    <%= form_for [@program, Relation.new] do |f| %>
+      <p><%= f.submit "关注项目" %></p>
+    <% end %>
+  <% end %>
+<%else %>
+  <p><%=Relation.where(program: @program).size %>人正在关注此项目。</p>
+<%end %>
+<div>
+  <div style="margin-top: 10px">
+  <%if @program.user==current_user %>
+  <%= link_to "编辑", edit_program_path(@program) %> |
+  <%= link_to "回到首页", programs_path %>
+  <div style="margin-top: 10px"><%= button_to "删除项目", @program, method: :delete %></div>
+  <%else %>
+    <%= link_to "回到首页", programs_path %>
+  <%end %>
+  </div>
+  <h2>讨论与交流</h2>
+  <div id="discussions">
+    <%= render :partial => @program.discussions %>
+  </div>
+
+  <%= form_for [@program, Discussion.new] do |f| %>
+    <p>
+      <%= f.label :content, "留言" %> <br />
+      <%= f.text_area :content, :rows => 5 %>
+    </p>
+    <p><%= f.submit "发布" %></p>
+  <% end %>
+
+
+</div>

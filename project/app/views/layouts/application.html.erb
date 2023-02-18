@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <div id="banner">
+    <h1>师生项目交流系统</h1>
+  </div>
+  <div id="left-panel">
+    <% if current_user %>
+      您好,<%= current_user.username %>!<br/>
+      您的学工号:<%= current_user.num%><br/>
+      <%= link_to '退出', logout_users_path %>
+      <%if current_user.Ident=="teacher" %>
+        <br/>
+        <br/>
+        <div style="margin-bottom: 5px"><%= link_to "我的项目", current_user %></div>
+        <span style="margin-bottom: 10px"><%= link_to "新建项目", new_program_path %></span>
+        <br/><span><%= link_to "回到首页", programs_path %></span>
+      <%else %>
+        <br/>
+        <br/>
+        <%= link_to "我的关注", following_users_path %><br/>
+        <%= link_to "回到首页", programs_path %>
+      <%end %>
+    <% else %>
+       <%= link_to '登录', login_users_path %><br/>
+      <%= link_to '没有账号？', register_users_path %>
+    <% end %>
+
+  </div>
+
+  <div id="main-panel">
+    <%= yield %>
+  </div>
+
+  <div id="footer">
+    Copyright cYw &copy; 2023
+  </div>
+  </body>
+</html>

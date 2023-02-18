@@ -1,0 +1,14 @@
+<div id="discussion_<%= discussion.id %>">
+  <p>
+    <span>
+      <%= discussion.user.username %>(<%= discussion.user.num %>)
+      <%if discussion.user.Ident == "teacher" %>
+      (老师)
+      <%end %>说:
+    </span>
+    <div style="background: #EFEFEF;">
+      <span><%= discussion.content %></span><br>
+    </div>
+    <span style="font-size: 5px;float: right"><%= time_ago_in_words(discussion.created_at) %> ago</span>
+  </p>
+</div>

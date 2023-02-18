@@ -1,0 +1,16 @@
+<div id="<%= dom_id relation %>" style="background: #EFEFEF;border-radius: 5px">
+  <p>
+    <strong>项目名称:</strong>
+    <%= Program.find_by(id: relation.program_id).title %>
+  </p>
+
+  <p>
+    <strong>项目简介:</strong>
+    <%= Program.find_by(id: relation.program_id).info %>
+  </p>
+  <div style="padding-bottom: 5px">
+    <p>
+      <%= link_to "项目详情", Program.find_by(id: relation.program_id) %>
+    </p>
+  </div>
+</div>
